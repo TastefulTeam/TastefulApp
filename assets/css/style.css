@@ -1,0 +1,60 @@
+
+@font-face
+{
+    font-family: 'Awesome_Birds';
+    src: url('../fonts/Awesome_Birds.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body
+{
+    width: 1550px;
+    overflow: hidden;
+}
+
+/* Start of Opening Page CSS */
+.slideShow
+{
+    width: 1550px;
+    height: 750px;
+    position: absolute;
+    z-index: 0;
+}
+.mySlides
+{
+    height: 100%;
+    width: 100%;
+}
+
+.content
+{
+    position: relative;
+    z-index: 1;
+}
+
+.tasteful
+{
+    font-family: 'Awesome_Birds';
+    color:#ffffff;
+    font-size: 200px;
+    position: relative;
+    top: 75px;
+    left: 1150px;
+}
+#login
+{
+    position: relative;
+    left: 1350px;
+    bottom: 0px;
+}
+
+#signUp
+{
+    position: relative;
+    top: 195px;
+    left: 1200px;
+    background-color: #DAA520;
+}
+
+/* End of Opening Page CSS */
