@@ -7,17 +7,33 @@
     font-style: normal;
 }
 
+@font-face
+{
+    font-family: 'hamilton';
+    src: url('../fonts/hamilton.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Moon_Flower';
+    src: url('../fonts/Moon_FLower.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body
 {
-    width: 1550px;
+    width: 1536px;
     overflow: hidden;
 }
 
 /* Start of Opening Page CSS */
 .slideShow
 {
-    width: 1550px;
-    height: 750px;
+    width: 1536px;
+    height: 800px;
     position: absolute;
     z-index: 0;
 }
@@ -27,34 +43,139 @@ body
     width: 100%;
 }
 
-.content
+.openingContent
 {
     position: relative;
     z-index: 1;
 }
 
-.tasteful
+#openingTasteful
 {
     font-family: 'Awesome_Birds';
     color:#ffffff;
-    font-size: 200px;
+    font-size: 12em;
     position: relative;
     top: 75px;
-    left: 1150px;
+    left: 75%;
 }
 #login
 {
     position: relative;
-    left: 1350px;
+    left: 90%;
     bottom: 0px;
 }
 
-#signUp
+.signUpGuest
 {
+    margin: 0 auto;
+    text-align: center;
     position: relative;
-    top: 195px;
-    left: 1200px;
+    color: #ffffff;
+    top: 175px;
+    left: 33%;
+}
+#signUp, #guest
+{
     background-color: #DAA520;
 }
 
 /* End of Opening Page CSS */
+
+/* Start of Main Page CSS */
+
+/* Background Image + Height&Width */
+.mainBackground
+{
+    height: 100%;
+    width: 100%;
+    background-image: url("../images/tableTop.jpg");
+    background-size: 100% 125%;
+}
+
+/* Width of Container that will contain map and side bar */
+.container
+{
+    width: 100%;
+}
+/* Text CSS for Tasteful Banner */
+#mainTasteful, #newAccountTasteful
+{
+    font-family: 'Awesome_Birds';
+    font-size: 5em;
+    color: #FFFFFF;
+    text-align: left;
+
+}
+
+#userInfo
+{
+    font-family: 'Moon_Flower';
+    font-size: 1.5em;
+    margin-top: 8%;
+    color: #FFFFFF;
+    text-align: right;
+}
+/* Shadow for MainContainer Div */
+.mainContent
+{
+    box-shadow: 0px 40px 50px #000000;
+}
+
+/* Adjust the width of map div to fit in main div */
+.map
+{
+    height: 70%;
+}
+
+#map
+{
+
+    width: 104%;
+    height: 100%;
+}
+
+/* Adjust the width of sidebar div to fit in main div */
+.sidebar
+{
+    height: 70%;
+    background-color: #F06C77;
+}
+
+/* Create new account CSS */
+.newAccountSheet
+{
+    color: #FFFFFF;
+    background-color: #F06C77;
+    height: 70%;
+    border-radius: 2%;
+    box-shadow: 0px 40px 50px #000000;
+}
+
+#createAccountText
+{
+    font-family: 'Moon_Flower';
+    font-size: 2.2em;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    text-align: left;
+}
+
+#submit-account-btn
+{
+    font-family: 'Moon_Flower';
+    border-color: #FFFFFF;
+    background-color: #F06C77;
+    font-size: 2em;
+}
+
+#submit-account-btn:hover
+{
+    font-family: 'Moon_Flower';
+    background-color: #FFFFFF;
+}
+
+#invalid
+{
+    color: red;
+    margin-bottom: 10px;
+}
