@@ -225,3 +225,22 @@ h2
 ::-webkit-scrollbar {
     display: none;
     }
+
+.test
+{
+    background-color: #000000;
+    height: 75%;
+    width: 95%;
+}
+
+.test2
+{
+    background-color: blue;
+    height: 100%;   
+}
+
+.test3
+{
+    background-color: red;
+    height: 100%;     
+}
