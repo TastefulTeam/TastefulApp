@@ -6,37 +6,178 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>        
 </head>
 
-<body>
-    <div class="mainBackground">
-        <div class="container">
-            <div class="row header">
-                <div class="col-lg-10 mainTasteful">
-                    <h1 id="mainTasteful">
-                        Tasteful
-                    </h1>
+<body style='overflow-x:hidden; overflow-y:hidden;'>
+    <div class="elementContainer">
+            <div class="mainBackground">
+                    <div class="container">
+            
+                        <div class="row header">
+                            <div class="col-lg-10 mainTasteful">
+                                <h1 id="mainTasteful">
+                                    Tasteful
+                                </h1>
+                            </div>
+                            <div class="col-lg-2 userInfo">
+                            </div>
+                        </div>
+            
+                        <div class="row mainContent">
+            
+                            <div class="col-lg-9 map">
+                                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12672.258342870064!2d-121.8733385!3d37.435579!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1523501570657"></iframe>
+                            </div>
+                            <div class="col-lg-3 sidebar">
+                                <!---- SIDEBAR CONTENT -->
+                                <!---- SIDEBAR CONTENT -->
+                                <!---- SIDEBAR CONTENT -->
+                                <!---- SIDEBAR CONTENT -->
+                                <!---- SIDEBAR CONTENT -->
+                            </div>
+                        </div>
+            
+                    </div>
+                    <div class="container-fluid secondaryContent">
+                        <div class="row">
+                            <div class="col-lg-4 filler"></div>
+                            <div class="col-lg-4 description">
+                                <h1 id="descriptionHeaders">Let's Talk Product</h1>
+                                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="col-lg-4 filler"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 productInfo">
+                                <h2>Product Information</h2>
+                                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="col-lg-4 productInfo">
+                                <h2>Product Information</h2>
+                                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="col-lg-4 productInfo">
+                                <h2>Product Information</h2>
+                                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-lg-3 teamInfo">
+                                    <img class="center-block teammate-pic" src="assets/images/404.png">
+                                    <h2>Dorian Macias</h2>
+                                    <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <br>
+                                    <div class=" center-block glyphicon">
+                                        <a id="glyphicon" href="https://github.com/dorianinc">
+                                            <span class="fab fa-github"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.linkedin.com/in/dorian-macias-491b5499">
+                                            <span class="fab fa-linkedin"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.facebook.com/Dorianinc">
+                                            <span class="fab fa-facebook-square"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 teamInfo">
+                                    <img class="center-block teammate-pic" src="assets/images/404.png">
+                                    <h2>Edward Nguyen</h2>
+                                    <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <br>
+                                    <div class="center-block glyphicon">
+                                        <a id="glyphicon" href="https://github.com/ednguyen92">
+                                            <span class="fab fa-github"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.linkedin.com/in/edhnguyen">
+                                            <span class="fab fa-linkedin"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.facebook.com/OzwaldZ">
+                                            <span class="fab fa-facebook-square"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 teamInfo">
+                                    <img class="center-block teammate-pic" src="assets/images/404.png">
+                                    <h2>Ronaldo DeGuzman</h2>
+                                    <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <br>
+                                    <div class="center-block glyphicon">
+                                        <a id="glyphicon" href="https://github.com/rbdjur">
+                                            <span class="fab fa-github"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.linkedin.com/in/ronaldodeguzman">
+                                            <span class="fab fa-linkedin"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.facebook.com/OzwaldZ">
+                                            <span class="fab fa-facebook-square"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 teamInfo">
+                                    <img class="center-block teammate-pic" src="assets/images/404.png">
+                                    <h2>Shawn Wood</h2>
+                                    <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <br>
+                                    <div class="center-block glyphicon">
+                                        <a id="glyphicon" href="https://github.com/woodshawn">
+                                            <span class="fab fa-github"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.w3schools.com">
+                                            <span class="fab fa-linkedin"></span>
+                                        </a>
+                                        <a id="glyphicon" href="https://www.facebook.com/OzwaldZ">
+                                            <span class="fab fa-facebook-square"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
                 </div>
-                <div class="col-lg-2 userInfo">
-                    <p id = "userInfo">Hello, Dorian!</p>
-                </div>
-            </div>
-            <div class="row mainContent">
-                <div class="col-lg-9 map">
-                    <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12672.258342870064!2d-121.8733385!3d37.435579!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1523501570657"></iframe>
-                </div>
-                <div class="col-lg-3 sidebar">
-
-                </div>
-            </div>
-
-        </div>
     </div>
+   
 
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="assets/javascript/javascript.js"></script>
 </body>

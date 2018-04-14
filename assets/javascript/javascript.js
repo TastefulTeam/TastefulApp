@@ -1,20 +1,22 @@
-/*
-    var slideIndex = 0;
-    carousel();
-  
-    function carousel() {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > x.length) {
-        slideIndex = 1
-      }
-      x[slideIndex - 1].style.display = "block";
-      setTimeout(carousel, 4000); // Change image every 5 seconds
-    } */
+
+$(".background").ready(function () {
+  var slideIndex = 0;
+  carousel();
+
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {
+      slideIndex = 1
+    }
+    x[slideIndex - 1].style.display = "block";
+    setTimeout(carousel, 4000); // Change image every 5 seconds
+  }
+});
 
 // Initialize Firebase
 var config = {
@@ -30,54 +32,59 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // Button for adding new user
-$("#submit-account-btn").on("click", function (event) {
+$("#submit-button").on("click", function (event) {
   event.preventDefault();
 
   //Grab user input
-  var newRealName = $("#real-name-input").val().trim();
-  var newAccountName = $("#account-name-input").val().trim();
-  var newPW = $("#new-password-input").val().trim();
-  var confirmPW = $("#confirm-password-input").val().trim();
+  var newEmail = $("#email-input").val().trim();
+  var newUserName = $("#user-name-input").val().trim();
+  var newPassword = $("#password-input").val().trim();
+  var newConfirmPassword = $("#confirm-password-input").val().trim();
 
-  if (newPW === confirmPW && confirmPW.length > 6) {
+  if (newPassword === newConfirmPassword && newPassword.length > 6) {
     console.log("They Match!");
 
-    var userPassword = confirmPW
+    var newUserPassword = newPassword
 
-    var newUser = {
-      realName: newRealName,
-      accountName: newAccountName,
-      accountPassword: userPassword
+    var user = {
+      email: newEmail,
+      userName: newUserName,
+      password: newUserPassword,
+      foodFeatures: ["littleCato"]
     };
     window.location.href = 'main-page.html';
-  }else if(newPW === confirmPW && confirmPW.length < 6) {
+  } else if (newPassword === newConfirmPassword && newPassword.length < 6) {
     $("#invalid").empty();
-    $("#invalid").append("Password must be at least 6 characters long.")    
-  } else if(newPW !== confirmPW) {
-    $("#invalid").empty();    
+    $("#invalid").append("Password must be at least 6 characters long.")
+  } else if (newPassword !== newConfirmPassword) {
+    $("#invalid").empty();
     $("#invalid").append("Looks you're passwords didn't match! Please try again.")
-  };
 
+  };
   // Uploads Account Info to the database
-  database.ref().push(newUser);
+  database.ref().push(user);
 
   // Clears all of the text-boxes
   $("#real-name-input").val("");
   $("#account-name-input").val("");
   $("#new-password-input").val("");
   $("#confirm-pasword-input").val("");
+
 });
 
 database.ref().on("child_added", function (childSnapShot, prevChildKey) {
   console.log(childSnapShot.val());
 
   // Stores everything into a variable
-  var fireBaseRealName = childSnapShot.val().realName;
-  var fireBaseAccountName = childSnapShot.val().accountName;
-  var fireBasePassword = childSnapShot.val().accountPassword;
+  var fireBaseEmail = childSnapShot.val().email;
+  var fireBaseUserName = childSnapShot.val().userName;
+  var fireBasePassword = childSnapShot.val().password;
+  var fireBaseFoodFeatures = childSnapShot.val().foodFeatures;
 
   // Account Info
-  console.log("Firebase says your real name is: ", fireBaseRealName);
-  console.log("Firebase says your account name is: ", fireBaseAccountName);
+  console.log("Firebase says your email is: ", fireBaseEmail);
+  console.log("Firebase says your username is: ", fireBaseUserName);
   console.log("Firebase says your password is: ", fireBasePassword);
+  console.log("Firebase says array name is: ", fireBaseFoodFeatures);
 });
+
