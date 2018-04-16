@@ -7,7 +7,7 @@ var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
 // Grab marker image from google documentation
-var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
+var MARKER_PATH = 'assets/images/markers/marker_red';
 // use RegExp to shorten URLs to simple ones
 var urlnameRegexp = new RegExp('^https?://.+?/');
 
@@ -39,11 +39,14 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: { lat: 37.1, lng: -95.7 },
-    mapTypeControl: false,
     panControl: false,
     zoomControl: false,
     streetViewControl: false
   });
+
+  var input = document.getElementById('autocomplete');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById('info-content')
@@ -97,7 +100,7 @@ function search() {
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: markerIcon
+          icon: markerIcon,
         });
 
         // When marker is clicked show mini info window with locations details
