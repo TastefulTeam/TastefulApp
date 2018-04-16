@@ -1,13 +1,26 @@
 <html lang="en">
 
-<head>
-    <title>Tasteful</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+        <head>
+                <title>Tasteful</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <!-- Linking page to CSS -->
+                <!-- BootStrap 3 -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+                    crossorigin="anonymous">
+                <!-- Google Fonts -->
+                <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+                <!-- Reset and Style CSS -->
+                <link rel="stylesheet" href="assets/css/reset.css">
+                <link rel="stylesheet" href="assets/css/style.css">
+                <!-- Font Awesome Fonts -->
+                <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+                    crossorigin="anonymous"></script>
+                <!-- Linking Page to Firebase -->
+                <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+                <!-- Linking Page to JQuery -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+            </head>
 
 <body>
     <div class ="elementContainer">
@@ -44,8 +57,8 @@
                                         <label for="confirm-password-input">Confirm Password</label>
                                         <input class="form-control" id="confirm-password-input" type="password">
                                     </div>
-                                    <p id="invalid"></p>
-                                    <button class="btn waves-effect waves-light" id="submit-button">Submit
+                                    <p id="invalidPassword"></p>
+                                    <button class="btn waves-effect waves-light" id="submit-account-button">Submit
                                     </button>
                                 </form>
                             </div>

@@ -3,52 +3,172 @@
 <head>
     <title>Tasteful</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Linking page to CSS -->
+    <!-- BootStrap 3 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Reset and Style CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome Fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <!-- Linking Page to Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <!-- Linking Page to JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class ="elementContainer">
-            <div class="mainBackground">
-                    <div class="container">
-                        <div class="row header">
-                            <div class="col-lg-1 filler"></div>
-            
-                            <div class="col-lg-11 newAccountTasteful">
-                                <h1 id="newAccountTasteful">
-                                    Tasteful
-                                </h1>
-                            </div>
-                        </div>
-                        <div class="row newAccountContent">
-                            <div class="col-lg-4 filler"></div>
-                            <div class="col-lg-4 newAccountSheet">
-                                <h1 id="createAccountText">Test your Tastebuds</h1>
-            
-                                <div class = "row">
-                                    <div class ="center-block test">
-                                        <div class="col-lg-6">
-                                            <div class="test2">
+    <div class="elementContainer">
+        <div class="mainBackground">
+            <div class="container">
+                <div class="row header">
+                    <div class="col-lg-1 filler"></div>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="test3"></div>
-                                        </div>
+                    <div class="col-lg-11 newAccountTasteful">
+                        <h1 id="newAccountTasteful">
+                            Tasteful
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 filler"></div>
+                    <div class="col-lg-4 surveySheet">
+                        <h1 id="surveyHeader">Test your Tastebuds</h1>
 
+                        <div class="row">
+                            <div class="center-block test">
+                                <div class="col-lg-6">
+                                    <div class="test2">
+                                        <h2>Proteins</h2>
+                                        <label>
+                                            <input class="features" type="checkbox" name="protein" value="beef">
+                                            <span class="checkmark">Beef</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="protein" value="pork">
+                                            <span class="checkmark">Pork</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="protein" value="lamb">
+                                            <span class="checkmark">Lamb</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="protein" value="chicken">
+                                            <span class="checkmark">Chicken</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="protein" value="fish">
+                                            <span class="checkmark">Fish</span>
+                                        </label>
+                                        <br>
+                                        <h2>Textures</h2>
+                                        <label>
+                                            <input class="features" type="checkbox" name="textures" value="creamy">
+                                            <span class="checkmark">Creamy</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="textures" value="crunchy">
+                                            <span class="checkmark">Crunchy</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="textures" value="crumbly">
+                                            <span class="checkmark">Crumbly</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="textures" value="gooey">
+                                            <span class="checkmark">Gooey</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="textures" value="moist">
+                                            <span class="checkmark">Moist</span>
+                                        </label>
                                     </div>
-
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="test3">
+                                        <h2>Flavors</h2>
+                                        <label>
+                                            <input class="features" type="checkbox" name="flavors" value="bitter">
+                                            <span class="checkmark">Bitter</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="flavors" value="salty">
+                                            <span class="checkmark">Salty</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="flavors" value="sour">
+                                            <span class="checkmark">Sour</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="flavors" value="spicy">
+                                            <span class="checkmark">Spicy</span>
+                                        </label>
+                                        <br>
+
+                                        <label>
+                                            <input class="features" type="checkbox" name="flavors" value="sweet">
+                                            <span class="checkmark">Sweet</span>
+                                        </label>
+                                        <h2>Cooking Methods</h2>
+                                        <label>
+                                            <input class="features" type="checkbox" name="method" value="baked">
+                                            <span class="checkmark">Baked</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="method" value="boiled">
+                                            <span class="checkmark">Boiled</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="method" value="deepfried">
+                                            <span class="checkmark">Deep-Fried</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="method" value="grilled">
+                                            <span class="checkmark">Grilled</span>
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input class="features" type="checkbox" name="method" value="roasted">
+                                            <span class="checkmark">Roasted</span>
+                                        </label>
+                                        <p id="invalid" style="margin-top: 15px;"></p>
+                                        <button class="btn waves-effect waves-light" id="submit-survey-button">Submit
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="col-lg-4 filler"></div>
-            
+
                         </div>
                     </div>
-            
-    </div>
-   
+                    <div class="col-lg-4 filler"></div>
+
+                </div>
+            </div>
+
+        </div>
+
         <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="assets/javascript/javascript.js"></script>

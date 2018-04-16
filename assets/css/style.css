@@ -31,11 +31,15 @@ body {
 }
 
 /* End of Universal CSS */
+
 /* ----------------------- */
+
 /* ----------------------- */
+
 /* Start of Opening Page CSS */
 
 /* Background slideshow for opening page CSS */
+
 .slideShow {
     width: 1536px;
     height: 800px;
@@ -44,18 +48,21 @@ body {
 }
 
 /* Background slideshow for opening page CSS */
+
 .mySlides {
     height: 100%;
     width: 100%;
 }
 
 /* Moves all content in opening page to the front of page*/
+
 .openingContent {
     position: relative;
     z-index: 1;
 }
 
 /* Project Title Name CSS */
+
 #openingTasteful {
     font-family: 'Awesome_Birds';
     color: #ffffff;
@@ -65,12 +72,15 @@ body {
 }
 
 /* Contains the Sign up and use as guest buttons */
+
 .signUpGuest {
     margin: 0 auto;
     text-align: center;
     color: #ffffff;
 }
+
 /* adds color to buttons */
+
 #guest,
 #signUp {
     background-color: #DAA520;
@@ -78,12 +88,67 @@ body {
 }
 
 /* End of Opening Page CSS */
+
 /* ----------------------- */
+
 /* ----------------------- */
+
+/* Start of Signup/Survey Page CSS */
+
+.newAccountSheet, .surveySheet {
+    color: #FFFFFF;
+    background-color: #3c4858;
+    height: 65%;
+    margin-top: 5%;
+    border-radius: 2%;
+    box-shadow: 0px 40px 50px #000000;
+}
+
+.surveySheet {
+    color: #FFFFFF;
+    background-color: #3c4858;
+    height: 30.5rem;
+    margin-top: 2rem;
+    border-radius: 2%;
+    box-shadow: 0px 40px 50px #000000;
+}
+#createAccountHeader, #surveyHeader,
+#sidebarHeader {
+    font-family: 'Moon_Flower';
+    font-size: 2.2em;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    text-align: left;
+}
+
+#submit-account-button, #submit-survey-button {
+    font-family: 'Moon_Flower';
+    border-color: #FFFFFF;
+    background-color: #3c4858;
+    font-size: 2em;
+}
+
+#submit-account-button:hover, #submit-account-button:active,#submit-survey-button:hover, #submit-survey-button:active {
+    font-family: 'Moon_Flower';
+    color: #fff;
+    background-color: #303946;
+}
+
+#invalidPassword {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* End sign up page CSS */
+
+/* ----------------------- */
+
+/* ----------------------- */
+
 /* Start of Main Page CSS */
 
-
 /* Background Image + Height&Width */
+
 .mainBackground {
     height: 100%;
     width: 100%;
@@ -93,11 +158,13 @@ body {
 }
 
 /* Width of Container that will contain map and side bar */
+
 .container {
     width: 100%;
 }
 
 /* Text CSS for Tasteful Banner */
+
 #mainTasteful,
 #newAccountTasteful {
     font-family: 'Awesome_Birds';
@@ -107,11 +174,13 @@ body {
 }
 
 /*Removes padding from MainTasteful div to fully fill div */
+
 .mainTasteful {
     padding: 0;
 }
 
 /* CSS for user UserGreeting on top right side of mainpage */
+
 #userInfo {
     font-family: 'Moon_Flower';
     font-size: 1.5em;
@@ -121,100 +190,74 @@ body {
 }
 
 /* Shadow for MainContainer Div */
+
 .mainContent {
     box-shadow: 0px 40px 50px #000000;
     padding: 0;
 }
 
 /* Adjust the width of map div to fit in main div */
+
 .map {
     height: 70%;
     padding: 0;
 }
+
 #map {
     width: 100%;
     height: 100%;
 }
 
 /* Adjust Map Search bar CSS */
+
 #autocomplete {
     background-color: #fff;
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 1.5em;
     font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
     text-overflow: ellipsis;
-    width: 400px;
-  }
-  
-  #autocomplete:focus {
+    margin-top: 5px;
+    margin-left: 12px;
+    width: 75%;
+    padding: 0 11px 0 13px;
+    border-radius: 50px;
+}
+
+#autocomplete:focus {
     border-color: #4d90fe;
-  }
+}
+
+#locationField {
+    padding-left: 10px;
+}
 
 /* Start of sidebar content CSS */
+
 /* Adjust the width of sidebar div to fit in main div */
+
 .sidebar {
     height: 70%;
     padding: 0;
     color: #FFFFFF;
-    background-color: #F06C77;
+    background-color: #3c4858;
     overflow: scroll;
 }
 
-#locationField
-{
-    padding-left: 10px;
-}
-
-.food
-{
+.food {
     background-color: indianred;
     border-style: solid;
     margin-right: 5px;
     margin-bottom: 5px;
 }
 
-/* End of sidebar content CSS */
-/* End of MainPage Page CSS */
-/* ----------------------- */
-/* ----------------------- */
-/* Start of Signup/Survey Page CSS */
-
-.newAccountSheet {
-    color: #FFFFFF;
-    background-color: #F06C77;
-    height: 65%;
-    margin-top: 5%;
-    border-radius: 2%;
-    box-shadow: 0px 40px 50px #000000;
-}
-
-#createAccountHeader,
-#sidebarHeader {
-    font-family: 'Moon_Flower';
-    font-size: 2.2em;
-    margin-top: 8%;
-    margin-bottom: 8%;
-    text-align: left;
-}
-
-#submit-button {
-    font-family: 'Moon_Flower';
-    border-color: #FFFFFF;
-    background-color: #F06C77;
+h2 {
+    margin-top: 10px;
+    text-indent: 10px;
     font-size: 2em;
-}
-
-#submit-btn:hover {
     font-family: 'Moon_Flower';
-    background-color: #FFFFFF;
 }
 
-#invalid {
-    color: red;
-    margin-bottom: 10px;
-}
+/* End of sidebar content CSS */
 
 .secondaryContent {
     margin-top: 55px;
@@ -250,7 +293,7 @@ body {
     margin-bottom: 8%;
 }
 
-h2 {
+h3 {
     font-family: 'Roboto Slab', serif;
     margin-bottom: 5%;
     text-align: center;
@@ -267,17 +310,85 @@ h2 {
 }
 
 .test {
-    background-color: #000000;
     height: 75%;
     width: 95%;
 }
 
 .test2 {
-    background-color: blue;
     height: 100%;
 }
 
 .test3 {
-    background-color: red;
     height: 100%;
 }
+
+/* Fixed sidenav, full height */
+
+.foodFeatures {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.foodFeatures a,
+.dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On mouse-over */
+
+.foodFeatures a:hover,
+.dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Main content */
+
+.main {
+    margin-left: 200px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+
+.active {
+    background-color: #303946;
+    color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+
+.dropdown-container {
+    display: none;
+    background-color: #36404f;
+    padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+/* End of MainPage Page CSS */
+
+/* ----------------------- */
+
+/* ----------------------- */

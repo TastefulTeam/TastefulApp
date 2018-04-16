@@ -138,7 +138,9 @@ function addResult(result, i) {
   var markerIcon = MARKER_PATH + markerLetter + '.png';
 
   var tr = document.createElement('tr');
-  tr.style.backgroundColor = (i % 2 === 0 ? '#f2838c' : '#f59aa2');
+  tr.style.backgroundColor = (i % 2 === 0 ? '#36404f' : '#3c4858');
+  tr.style.color = ("#ffffff");
+  tr.style.textIndent = ("10px");
   tr.onclick = function () {
     google.maps.event.trigger(markers[i], 'click');
   };
@@ -196,7 +198,7 @@ function createButtons() {
     search();
   });
 };
-console.log(chosenFood);
+console.log("Chose food is: ",chosenFood);
 
 /**************************************************
  *             End of Filters Code                *

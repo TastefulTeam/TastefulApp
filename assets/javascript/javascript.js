@@ -36,7 +36,7 @@ function setupCarousel() {
 
 function setupLoginPage() {
   // Button for adding new user
-  $("#submit-button").on("click", function (event) {
+  $("#submit-account-button").on("click", function (event) {
       event.preventDefault();
 
       //Grab user input
@@ -45,7 +45,7 @@ function setupLoginPage() {
       var newPassword = $("#password-input").val().trim();
       var newConfirmPassword = $("#confirm-password-input").val().trim();
 
-      if (newPassword === newConfirmPassword && newPassword.length > 6) {
+      if (newPassword === newConfirmPassword && newPassword.length >= 6) {
 
         var newUserPassword = newPassword
 
@@ -56,14 +56,14 @@ function setupLoginPage() {
           foodFeatures: ["littleCato"]
         };
 
-          window.location.href = 'main-page.html';
+          window.location.href = 'survey-page.html';
           
     } else if (newPassword === newConfirmPassword && newPassword.length < 6) {
-      $("#invalid").empty();
-      $("#invalid").append("Password must be at least 6 characters long.")
+      $("#invalidPassword").empty();
+      $("#invalidPassword").append("Password must be at least 6 characters long.")
     } else if (newPassword !== newConfirmPassword) {
-      $("#invalid").empty();
-      $("#invalid").append("Looks you're passwords didn't match! Please try again.")
+      $("#invalidPassword").empty();
+      $("#invalidPassword").append("Looks you're passwords didn't match! Please try again.")
 
     }; console.log(user);
     // Uploads Account Info to Firebase database
@@ -83,6 +83,24 @@ function setupUserGreeting() {
   $("#userInfo").text("Hello " + user.userName);
   console.log("hello", user.foodFeatures);
 }
+function initializeDropMenu() {
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+  
+}
+
 
 /*
 database.ref().on("child_added", function (childSnapShot, prevChildKey) {
