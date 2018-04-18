@@ -112,8 +112,8 @@ body {
 .surveySheet {
     color: #FFFFFF;
     background-color: #3c4858;
-    height: 30.5rem;
-    margin-top: 2rem;
+    height: 33rem;
+    margin-top: .1rem;
     border-radius: 2%;
     box-shadow: 0px 40px 50px #000000;
 }
@@ -139,7 +139,7 @@ body {
     background-color: #303946;
 }
 
-#invalidPassword {
+#invalid {
     color: red;
     margin-bottom: 10px;
 }

@@ -37,40 +37,44 @@ function setupCarousel() {
 function setupLoginPage() {
   // Button for adding new user
   $("#submit-account-button").on("click", function (event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      //Grab user input
-      var newEmail = $("#email-input").val().trim();
-      var newUserName = $("#user-name-input").val().trim();
-      var newPassword = $("#password-input").val().trim();
-      var newConfirmPassword = $("#confirm-password-input").val().trim();
+    //Grab user input
+    var newEmail = $("#email-input").val().trim();
+    var newUserName = $("#user-name-input").val().trim();
+    var newPassword = $("#password-input").val().trim();
+    var newConfirmPassword = $("#confirm-password-input").val().trim();
 
-      if (newPassword === newConfirmPassword && newPassword.length >= 6) {
+    if (newPassword === newConfirmPassword && newPassword.length >= 6) {
 
-        var newUserPassword = newPassword
+      var newUserPassword = newPassword
 
-        var user = {
-          email: newEmail,
-          userName: newUserName,
-          password: newUserPassword,
-          foodFeatures: ["littleCato"]
-        };
+      var user = {
+        email: newEmail,
+        userName: newUserName,
+        password: newUserPassword,
+        foodFeatures: []
+      };
 
-          window.location.href = 'survey-page.html';
-          
+      window.location.href = 'survey-page.html';
+
     } else if (newPassword === newConfirmPassword && newPassword.length < 6) {
-      $("#invalidPassword").empty();
-      $("#invalidPassword").append("Password must be at least 6 characters long.")
+      $("#invalid").empty();
+      $("#invalid").append("Password must be at least 6 characters long.")
     } else if (newPassword !== newConfirmPassword) {
-      $("#invalidPassword").empty();
-      $("#invalidPassword").append("Looks you're passwords didn't match! Please try again.")
+      $("#invalid").empty();
+      $("#invalid").append("Looks you're passwords didn't match! Please try again.");
 
-    }; console.log(user);
+    };
+    console.log(user);
     // Uploads Account Info to Firebase database
     database.ref().push(user);
 
     // Clears all of the text-boxes
-    $("#real-name-input").val(""); $("#account-name-input").val(""); $("#new-password-input").val(""); $("#confirm-pasword-input").val("");
+    $("#real-name-input").val("");
+    $("#account-name-input").val("");
+    $("#new-password-input").val("");
+    $("#confirm-pasword-input").val("");
 
     // Places Account Info into Local Storage
     localStorage.setItem('localUser', JSON.stringify(user));
@@ -78,17 +82,35 @@ function setupLoginPage() {
   });
 }
 
+function boxChecker() {
+  var user = JSON.parse(localStorage.getItem('localUser'));
+  var allCheckBoxes = document.getElementsByClassName("features");
+
+  for (var i = 0; i < allCheckBoxes.length; i++) {
+    var checkBox = allCheckBoxes[i];
+    if (checkBox.checked === true) {
+      user.foodFeatures.push(checkBox.getAttribute('value'));
+      window.location.href = 'main-page.html';
+    } else if (user.foodFeatures.length < 1) {
+      $("invalid").append("Please select at least one option");
+    }
+  }
+  console.log(user.foodFeatures);
+  
+}
+
 function setupUserGreeting() {
   var user = JSON.parse(localStorage.getItem('localUser'));
   $("#userInfo").text("Hello " + user.userName);
   console.log("hello", user.foodFeatures);
 }
+
 function initializeDropMenu() {
   var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
-  
+
   for (i = 0; i < dropdown.length; i++) {
-    dropdown[i].addEventListener("click", function() {
+    dropdown[i].addEventListener("click", function () {
       this.classList.toggle("active");
       var dropdownContent = this.nextElementSibling;
       if (dropdownContent.style.display === "block") {
@@ -98,8 +120,10 @@ function initializeDropMenu() {
       }
     });
   }
-  
+
 }
+
+
 
 
 /*
