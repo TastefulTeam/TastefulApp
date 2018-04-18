@@ -2,7 +2,7 @@
 var map, places, infoWindow;
 var markers = [];
 var autocomplete;
-var food = ["Spicy", "Fish", "Sushi", "Sweet", "Pizza"];
+var food = ["Salty", "Sweet", "Sour", "Fruity", "Vegan", "Crunchy", "Crispy"];
 var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
@@ -11,28 +11,69 @@ var MARKER_PATH = 'assets/images/markers/marker_red';
 // use RegExp to shorten URLs to simple ones
 var urlnameRegexp = new RegExp('^https?://.+?/');
 
-// // Create Buttons based on strings inside variable food
-// var food = ["Spicy", "Fish", "Sushi", "Sweet"];
-//       function createButtons(food) {
-//         for (var i = 0; i < food.length; i++) {
-//           var a = $("<button>");
-//           a.addClass("food");
-//           a.attr("data-name", food[i]);
-//           a.text(food[i]);
-//           $("#buttons-view").append(a);
-//         }
-//         $("#buttons-view").on("click", ".food", function() {
-//         var filter = $(this).attr("data-name");
-//         console.log(filter);
-//       });
-//       }
-
-//       createButtons();
-
 /**************************************************
  *        Start of Map and Marker Code            *
 ***************************************************/
-
+function yourLocationButton(map, marker)
+{
+  var controlDiv = document.createElement('div');
+	var controlBorder = document.createElement('button');
+  controlBorder.style.backgroundColor = '#fff';
+  controlBorder.style.border = 'none';
+	controlBorder.style.outline = 'none';
+	controlBorder.style.width = '28px';
+	controlBorder.style.height = '28px';
+	controlBorder.style.borderRadius = '2px';
+	controlBorder.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+	controlBorder.style.cursor = 'pointer';
+	controlBorder.style.marginRight = '10px';
+	controlBorder.style.padding = '0px';
+	controlBorder.title = 'Your Location';
+  controlDiv.appendChild(controlBorder);
+  
+  var controlText = document.createElement('div');
+	controlText.style.margin = '5px';
+	controlText.style.width = '18px';
+	controlText.style.height = '18px';
+	controlText.style.backgroundImage = 'url(assets/images/mylocation-sprite-1x.png)';
+	controlText.style.backgroundSize = '180px 18px';
+	controlText.style.backgroundPosition = '0px 0px';
+	controlText.style.backgroundRepeat = 'no-repeat';
+	controlText.id = 'you_location_img';
+  controlBorder.appendChild(controlText);
+  
+  google.maps.event.addListener(map, 'dragend', function() {
+		$('#your_location_img').css('background-position', '0px 0px');
+  });
+  
+  controlBorder.addEventListener('click', function() {
+		var imgLoc = '0';
+		var animationInterval = setInterval(function(){
+			if(imgLoc == '-18') imgLoc = '0';
+			else imgLoc = '-18';
+			$('#your_location_img').css('background-position', imgLoc +'px 0px');
+		}, 500);
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				marker.setPosition(latlng);
+        map.setCenter(latlng);
+        map.setZoom(15);
+        clearInterval(animationInterval);
+        $('#your_location_img').css('background-position', '-144px 0px');
+        search();
+			});
+		}
+		else{
+			clearInterval(animationInterval);
+			$('#your_location_img').css('background-position', '0px 0px');
+		}
+  });
+  
+  controlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+  
+}
 
 // This function is what generates the map when page is loaded with it starting in the USA
 function initMap() {
@@ -64,6 +105,11 @@ function initMap() {
   places = new google.maps.places.PlacesService(map);
 
   autocomplete.addListener('place_changed', onPlaceChanged);
+  	var myMarker = new google.maps.Marker({
+		map: map,
+    animation: google.maps.Animation.DROP
+	});
+  yourLocationButton(map, myMarker);
 }
 
 // Zoom in on User city input
@@ -83,7 +129,7 @@ function search() {
   var search = {
     bounds: map.getBounds(),
     types: ['restaurant'],
-    keyword: chosenFood
+    keyword: chosenFood[chosenFood.length-1]
   }
   console.log(search.keyword);
 
@@ -192,13 +238,23 @@ function createButtons() {
     console.log(filter);
     var foodPush = [];
     foodPush.push(filter);
-    chosenFood.push(foodPush);
+    console.log(foodPush);
+    var found = foodPush.find(function(element) {
+      // return element === filter;
+      if(element === filter) {
+        console.log(found);
+        console.log(element);
+        // foodPush.push(filter);
+        chosenFood.push(element);
+        console.log(chosenFood);
+      }
+      });
     // chosenFood.push(filter);
     // console.log(chosenFood);
     search();
   });
 };
-console.log("Chose food is: ",chosenFood);
+console.log("Chosen food is: " + chosenFood);
 
 /**************************************************
  *             End of Filters Code                *
