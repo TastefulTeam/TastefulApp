@@ -54,9 +54,9 @@ function initMap() {
 
   autocomplete.addListener('place_changed', onPlaceChanged);
 
-  	var myMarker = new GeolocationMarker({
-		map: map,
-    // animation: google.maps.Animation.DROP
+  	var myMarker = new google.maps.Marker({
+    map: map,
+    animation: google.maps.Animation.DROP
 	});
   yourLocationButton(map, myMarker);
 }
@@ -404,4 +404,5 @@ function buildIWContent(place) {
 
 // // Call function createButtons
 // createButtons();
+
 
