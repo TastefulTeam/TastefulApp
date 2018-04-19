@@ -1,11 +1,8 @@
 // Global Variables
 var map, places, infoWindow;
 var markers = [];
-// Variable for search bar autocomplete
 var autocomplete;
-// Array of Taste filters
 var food = ["Salty", "Sweet", "Sour", "Fruity", "Vegan", "Crunchy", "Crispy"];
-// Empty array to push taste into keywords
 var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
@@ -17,46 +14,6 @@ var urlnameRegexp = new RegExp('^https?://.+?/');
 /**************************************************
  *        Start of Map and Marker Code            *
 ***************************************************/
-
-// This function is what generates the map when page is loaded with it starting in the USA
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: { lat: 37.1, lng: -95.7 },
-    panControl: false,
-    zoomControl: false,
-    streetViewControl: false
-  });
-
-  var input = document.getElementById('autocomplete');
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  infoWindow = new google.maps.InfoWindow({
-    content: document.getElementById('info-content')
-
-  });
-
-  // Create the autocomplete object based on what the user inputs
-  // Restrict the search to the default USA, and restrict user input to place type "cities".
-  autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(
-      document.getElementById('autocomplete')), {
-      types: ['(cities)'],
-      componentRestrictions: countryRestrict
-    });
-
-  places = new google.maps.places.PlacesService(map);
-
-  autocomplete.addListener('place_changed', onPlaceChanged);
-
-  	var myMarker = new google.maps.Marker({
-		map: map,
-    animation: google.maps.Animation.DROP
-	});
-  yourLocationButton(map, myMarker);
-}
-
-
 function yourLocationButton(map, marker)
 {
   var controlDiv = document.createElement('div');
@@ -118,8 +75,42 @@ function yourLocationButton(map, marker)
   
 }
 
+// This function is what generates the map when page is loaded with it starting in the USA
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: { lat: 37.1, lng: -95.7 },
+    panControl: false,
+    zoomControl: false,
+    streetViewControl: false
+  });
 
+  var input = document.getElementById('autocomplete');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+  infoWindow = new google.maps.InfoWindow({
+    content: document.getElementById('info-content')
+
+  });
+
+  // Create the autocomplete object based on what the user inputs
+  // Restrict the search to the default USA, and restrict user input to place type "cities".
+  autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(
+      document.getElementById('autocomplete')), {
+      types: ['(cities)'],
+      componentRestrictions: countryRestrict
+    });
+  places = new google.maps.places.PlacesService(map);
+
+  autocomplete.addListener('place_changed', onPlaceChanged);
+  	var myMarker = new google.maps.Marker({
+		map: map,
+    animation: google.maps.Animation.DROP
+	});
+  yourLocationButton(map, myMarker);
+}
 
 // Zoom in on User city input
 function onPlaceChanged() {
@@ -138,12 +129,11 @@ function search() {
   var search = {
     bounds: map.getBounds(),
     types: ['restaurant'],
-    radius: 4000,
     keyword: chosenFood[chosenFood.length-1]
   }
-  console.log(search.keyword);
+ /* console.log(search.keyword); */
 
-  places.nearbySearch(search, function (results, status, pagination) {
+  places.nearbySearch(search, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers();
@@ -164,18 +154,9 @@ function search() {
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
-      }
+        
 
-      var getNextPage = null;
-      var moreButton = document.getElementById('moreResults');
-      moreButton.onclick = function() {
-        moreButton.disabled = true;
-        if (getNextPage) getNextPage();
-      };
-      moreButton.disabled = !pagination.hasNextPage;
-      getNextPage = pagination.hasNextPage && function() {
-        pagination.nextPage();
-      };
+      }
     }
   });
 }
@@ -242,7 +223,6 @@ function clearResults() {
 ***************************************************/
 
 function createButtons() {
-  console.log("inside function");
   for (var i = 0; i < food.length; i++) {
     var a = $("<button>");
     a.addClass("food");
