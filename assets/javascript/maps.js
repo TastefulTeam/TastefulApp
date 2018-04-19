@@ -15,7 +15,7 @@ var MARKER_PATH = 'assets/images/markers/marker_red';
 var urlnameRegexp = new RegExp('^https?://.+?/');
 
 /**************************************************
- *        Start of Map and Marker Code            *
+*      Start of Generate Google Map UI Code       *
 ***************************************************/
 
 // This function is what generates the map when page is loaded with it starting in the USA
@@ -28,6 +28,7 @@ function initMap() {
     streetViewControl: false
   });
 
+  // Place autocomplete search box inside UI of map
   var input = document.getElementById('autocomplete');
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -49,77 +50,92 @@ function initMap() {
 
   autocomplete.addListener('place_changed', onPlaceChanged);
 
-  	var myMarker = new google.maps.Marker({
-		map: map,
+  var myMarker = new google.maps.Marker({
+    map: map,
     animation: google.maps.Animation.DROP
-	});
+  });
   yourLocationButton(map, myMarker);
 }
 
+/**************************************************
+*       End of Generate Google Map UI Code        *
+***************************************************/
 
-function yourLocationButton(map, marker)
-{
+/**************************************************
+*         Start of Current Location Code          *
+***************************************************/
+
+function yourLocationButton(map, marker) {
+  // Create Your Location Button
   var controlDiv = document.createElement('div');
-	var controlBorder = document.createElement('button');
+  var controlBorder = document.createElement('button');
   controlBorder.style.backgroundColor = '#fff';
   controlBorder.style.border = 'none';
-	controlBorder.style.outline = 'none';
-	controlBorder.style.width = '28px';
-	controlBorder.style.height = '28px';
-	controlBorder.style.borderRadius = '2px';
-	controlBorder.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
-	controlBorder.style.cursor = 'pointer';
-	controlBorder.style.marginRight = '10px';
-	controlBorder.style.padding = '0px';
-	controlBorder.title = 'Your Location';
+  controlBorder.style.outline = 'none';
+  controlBorder.style.width = '28px';
+  controlBorder.style.height = '28px';
+  controlBorder.style.borderRadius = '2px';
+  controlBorder.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+  controlBorder.style.cursor = 'pointer';
+  controlBorder.style.marginRight = '10px';
+  controlBorder.style.padding = '0px';
+  controlBorder.title = 'Your Location';
   controlDiv.appendChild(controlBorder);
-  
+
   var controlText = document.createElement('div');
-	controlText.style.margin = '5px';
-	controlText.style.width = '18px';
-	controlText.style.height = '18px';
-	controlText.style.backgroundImage = 'url(assets/images/mylocation-sprite-1x.png)';
-	controlText.style.backgroundSize = '180px 18px';
-	controlText.style.backgroundPosition = '0px 0px';
-	controlText.style.backgroundRepeat = 'no-repeat';
-	controlText.id = 'you_location_img';
+  controlText.style.margin = '5px';
+  controlText.style.width = '18px';
+  controlText.style.height = '18px';
+  controlText.style.backgroundImage = 'url(assets/images/mylocation-sprite-1x.png)';
+  controlText.style.backgroundSize = '180px 18px';
+  controlText.style.backgroundPosition = '0px 0px';
+  controlText.style.backgroundRepeat = 'no-repeat';
+  controlText.id = 'you_location_img';
   controlBorder.appendChild(controlText);
-  
-  google.maps.event.addListener(map, 'dragend', function() {
-		$('#your_location_img').css('background-position', '0px 0px');
+
+  google.maps.event.addListener(map, 'dragend', function () {
+    $('#your_location_img').css('background-position', '0px 0px');
   });
-  
-  controlBorder.addEventListener('click', function() {
-		var imgLoc = '0';
-		var animationInterval = setInterval(function(){
-			if(imgLoc == '-18') imgLoc = '0';
-			else imgLoc = '-18';
-			$('#your_location_img').css('background-position', imgLoc +'px 0px');
-		}, 500);
-		if(navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				marker.setPosition(latlng);
+
+  controlBorder.addEventListener('click', function () {
+    var imgLoc = '0';
+    var animationInterval = setInterval(function () {
+      if (imgLoc == '-18') imgLoc = '0';
+      else imgLoc = '-18';
+      $('#your_location_img').css('background-position', imgLoc + 'px 0px');
+    }, 500);
+
+    // Google Maps API code for geolocation which grabs users device current location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        marker.setPosition(latlng);
         map.setCenter(latlng);
         map.setZoom(15);
         clearInterval(animationInterval);
         $('#your_location_img').css('background-position', '-144px 0px');
         search();
-			});
-		}
-		else{
-			clearInterval(animationInterval);
-			$('#your_location_img').css('background-position', '0px 0px');
-		}
+      });
+    }
+    else {
+      clearInterval(animationInterval);
+      $('#your_location_img').css('background-position', '0px 0px');
+    }
   });
-  
+
+  // Position the current locations button at the bottom right corner or MAP UI
   controlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
-  
+
 }
 
+/**************************************************
+*          End of Current Location Code           *
+***************************************************/
 
-
+/**************************************************
+*      Start Of Search by City Nearby Code        *
+***************************************************/
 
 // Zoom in on User city input
 function onPlaceChanged() {
@@ -139,10 +155,11 @@ function search() {
     bounds: map.getBounds(),
     types: ['restaurant'],
     radius: 4000,
-    keyword: chosenFood[chosenFood.length-1]
+    keyword: chosenFood[chosenFood.length - 1]
   }
   console.log(search.keyword);
 
+  // Google places library searches nearby restaurants in the your chosen area
   places.nearbySearch(search, function (results, status, pagination) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
@@ -166,19 +183,28 @@ function search() {
         addResult(results[i], i);
       }
 
+      // Google Places API Code to get more results past the initial 20 results up to 60 results can be found
       var getNextPage = null;
       var moreButton = document.getElementById('moreResults');
-      moreButton.onclick = function() {
+      moreButton.onclick = function () {
         moreButton.disabled = true;
         if (getNextPage) getNextPage();
       };
       moreButton.disabled = !pagination.hasNextPage;
-      getNextPage = pagination.hasNextPage && function() {
+      getNextPage = pagination.hasNextPage && function () {
         pagination.nextPage();
       };
     }
   });
 }
+
+/**************************************************
+*        End Of Search by City Nearby Code        *
+***************************************************/
+
+/**************************************************
+ *          Start of Map Markers Code             *
+***************************************************/
 
 // Function to clear markers when needed
 function clearMarkers() {
@@ -234,7 +260,7 @@ function clearResults() {
 }
 
 /**************************************************
- *         End of Map and Marker Code             *
+ *           End of Map Markers Code              *
 ***************************************************/
 
 /**************************************************
@@ -258,16 +284,16 @@ function createButtons() {
     var foodPush = [];
     foodPush.push(filter);
     console.log(foodPush);
-    var found = foodPush.find(function(element) {
+    var found = foodPush.find(function (element) {
       // return element === filter;
-      if(element === filter) {
+      if (element === filter) {
         console.log(found);
         console.log(element);
         // foodPush.push(filter);
         chosenFood.push(element);
         console.log(chosenFood);
       }
-      });
+    });
     // chosenFood.push(filter);
     // console.log(chosenFood);
     search();
