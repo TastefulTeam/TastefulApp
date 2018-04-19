@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
 //------------------------------------------------//
 /* Opening Page Functions */
 /* Creates Background Slideshow */
