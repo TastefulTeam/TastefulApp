@@ -1,8 +1,11 @@
 // Global Variables
 var map, places, infoWindow;
 var markers = [];
+// Variable for search bar autocomplete
 var autocomplete;
+// Array of Taste filters
 var food = ["Salty", "Sweet", "Sour", "Fruity", "Vegan", "Crunchy", "Crispy"];
+// Empty array to push taste into keywords
 var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
@@ -47,10 +50,10 @@ function initMap() {
 
   autocomplete.addListener('place_changed', onPlaceChanged);
 
-  var myMarker = new google.maps.Marker({
-    map: map,
+  	var myMarker = new google.maps.Marker({
+		map: map,
     animation: google.maps.Animation.DROP
-  });
+	});
   yourLocationButton(map, myMarker);
 }
 
@@ -62,68 +65,69 @@ function initMap() {
 *         Start of Current Location Code          *
 ***************************************************/
 
-function yourLocationButton(map, marker) {
+function yourLocationButton(map, marker)
+{
   // Create Your Location Button
   var controlDiv = document.createElement('div');
-  var controlBorder = document.createElement('button');
+	var controlBorder = document.createElement('button');
   controlBorder.style.backgroundColor = '#fff';
   controlBorder.style.border = 'none';
-  controlBorder.style.outline = 'none';
-  controlBorder.style.width = '28px';
-  controlBorder.style.height = '28px';
-  controlBorder.style.borderRadius = '2px';
-  controlBorder.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
-  controlBorder.style.cursor = 'pointer';
-  controlBorder.style.marginRight = '10px';
-  controlBorder.style.padding = '0px';
-  controlBorder.title = 'Your Location';
+	controlBorder.style.outline = 'none';
+	controlBorder.style.width = '28px';
+	controlBorder.style.height = '28px';
+	controlBorder.style.borderRadius = '2px';
+	controlBorder.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+	controlBorder.style.cursor = 'pointer';
+	controlBorder.style.marginRight = '10px';
+	controlBorder.style.padding = '0px';
+	controlBorder.title = 'Your Location';
   controlDiv.appendChild(controlBorder);
-
+  
   var controlText = document.createElement('div');
-  controlText.style.margin = '5px';
-  controlText.style.width = '18px';
-  controlText.style.height = '18px';
-  controlText.style.backgroundImage = 'url(assets/images/mylocation-sprite-1x.png)';
-  controlText.style.backgroundSize = '180px 18px';
-  controlText.style.backgroundPosition = '0px 0px';
-  controlText.style.backgroundRepeat = 'no-repeat';
-  controlText.id = 'you_location_img';
+	controlText.style.margin = '5px';
+	controlText.style.width = '18px';
+	controlText.style.height = '18px';
+	controlText.style.backgroundImage = 'url(assets/images/mylocation-sprite-1x.png)';
+	controlText.style.backgroundSize = '180px 18px';
+	controlText.style.backgroundPosition = '0px 0px';
+	controlText.style.backgroundRepeat = 'no-repeat';
+	controlText.id = 'you_location_img';
   controlBorder.appendChild(controlText);
-
-  google.maps.event.addListener(map, 'dragend', function () {
-    $('#your_location_img').css('background-position', '0px 0px');
+  
+  google.maps.event.addListener(map, 'dragend', function() {
+		$('#your_location_img').css('background-position', '0px 0px');
   });
-
-  controlBorder.addEventListener('click', function () {
-    var imgLoc = '0';
-    var animationInterval = setInterval(function () {
-      if (imgLoc == '-18') imgLoc = '0';
-      else imgLoc = '-18';
-      $('#your_location_img').css('background-position', imgLoc + 'px 0px');
+  
+  controlBorder.addEventListener('click', function() {
+		var imgLoc = '0';
+		var animationInterval = setInterval(function(){
+			if(imgLoc == '-18') imgLoc = '0';
+			else imgLoc = '-18';
+			$('#your_location_img').css('background-position', imgLoc +'px 0px');
     }, 500);
-
+    
     // Google Maps API code for geolocation which grabs users device current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        marker.setPosition(latlng);
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				marker.setPosition(latlng);
         map.setCenter(latlng);
         map.setZoom(15);
         clearInterval(animationInterval);
         $('#your_location_img').css('background-position', '-144px 0px');
         search();
-      });
-    }
-    else {
-      clearInterval(animationInterval);
-      $('#your_location_img').css('background-position', '0px 0px');
-    }
+			});
+		}
+		else{
+			clearInterval(animationInterval);
+			$('#your_location_img').css('background-position', '0px 0px');
+		}
   });
-
+  
   // Position the current locations button at the bottom right corner or MAP UI
   controlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
-
+  
 }
 
 /**************************************************
@@ -152,9 +156,9 @@ function search() {
     bounds: map.getBounds(),
     types: ['restaurant'],
     radius: 4000,
-    keyword: chosenFood[chosenFood.length - 1]
+    keyword: chosenFood[chosenFood.length-1]
   }
- /* console.log(search.keyword); */
+  console.log(search.keyword);
 
   // Google places library searches nearby restaurants in the your chosen area
   places.nearbySearch(search, function (results, status, pagination) {
@@ -178,17 +182,17 @@ function search() {
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
-        
+      }
 
       // Google Places API Code to get more results past the initial 20 results up to 60 results can be found
       var getNextPage = null;
       var moreButton = document.getElementById('moreResults');
-      moreButton.onclick = function () {
+      moreButton.onclick = function() {
         moreButton.disabled = true;
         if (getNextPage) getNextPage();
       };
       moreButton.disabled = !pagination.hasNextPage;
-      getNextPage = pagination.hasNextPage && function () {
+      getNextPage = pagination.hasNextPage && function() {
         pagination.nextPage();
       };
     }
@@ -265,6 +269,7 @@ function clearResults() {
 ***************************************************/
 
 function createButtons() {
+  console.log("inside function");
   for (var i = 0; i < food.length; i++) {
     var a = $("<button>");
     a.addClass("food");
@@ -280,16 +285,16 @@ function createButtons() {
     var foodPush = [];
     foodPush.push(filter);
     console.log(foodPush);
-    var found = foodPush.find(function (element) {
+    var found = foodPush.find(function(element) {
       // return element === filter;
-      if (element === filter) {
+      if(element === filter) {
         console.log(found);
         console.log(element);
         // foodPush.push(filter);
         chosenFood.push(element);
         console.log(chosenFood);
       }
-    });
+      });
     // chosenFood.push(filter);
     // console.log(chosenFood);
     search();
