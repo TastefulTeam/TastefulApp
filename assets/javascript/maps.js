@@ -439,5 +439,31 @@ function checkBoxUpdater() {
   console.log(featuresArray);
 }
 
+function setupUserGreeting() {
+  var user = JSON.parse(localStorage.getItem('localUser')); // Call user object
+
+  $("#userInfo").text("Hello " + user.userName); // User Greeting
+};
+
+/* Main Page Functions */
+/* Function to initialize Dropdown Menu */
+function initializeDropMenu() {
+  var dropdown = document.getElementsByClassName("dropdown-btn"); // Assigns variable to dropdown buttons containing foodFeatures
+
+  for (var i = 0; i < dropdown.length; i++) { // Loops thru all dropdowns
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling; // Calls all elements within dropdown button
+      if (dropdownContent.style.display === "block") { // Displays features
+        dropdownContent.style.display = "none"; // Hides features
+
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+};
+
+setupUserGreeting();
 checkBoxUpdater();
 initializeDropMenu();
