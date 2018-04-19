@@ -405,4 +405,21 @@ function buildIWContent(place) {
 // // Call function createButtons
 // createButtons();
 
+function initializeDropMenu() {
+  var dropdown = document.getElementsByClassName("dropdown-btn"); // Assigns variable to dropdown buttons containing foodFeatures
 
+  for (var i = 0; i < dropdown.length; i++) { // Loops thru all dropdowns
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling; // Calls all elements within dropdown button
+      if (dropdownContent.style.display === "block") { // Displays features
+        dropdownContent.style.display = "none"; // Hides features
+
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+};
+
+initializeDropMenu();
