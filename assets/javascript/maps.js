@@ -51,7 +51,39 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow({
     content: document.getElementById('info-content')
 
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          'Error: The Geolocation service failed.' :
+                          'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+  }
+
+
   });
+
+  
 
   // Create the autocomplete object based on what the user inputs
   // Restrict the search to the default USA, and restrict user input to place type "cities".
@@ -65,6 +97,8 @@ function initMap() {
 
   autocomplete.addListener('place_changed', onPlaceChanged);
 }
+
+
 
 // Zoom in on User city input
 function onPlaceChanged() {
