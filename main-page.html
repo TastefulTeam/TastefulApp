@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en-us">
 
 <head>
     <title>Tasteful</title>
@@ -25,11 +25,10 @@
 </head>
 
 <body style='overflow-x:hidden; overflow-y:hidden;'>
-    <div class="elementContainer">
         <div class="mainBackground">
             <div class="container">
 
-                <div class="row header">
+                <div class="row">
                     <div class="col-lg-10 mainTasteful">
                         <h1 id="mainTasteful">
                             Tasteful
@@ -51,16 +50,141 @@
                             <input id="autocomplete" placeholder="Enter a city" type="text" />
                         </div>
 
-                        <!-- List of Filters -->
-                        <div class="container" id="foodButtons">
-                        </div>
+                        <!-- Original Filter buttons -->
+                        <!-- <div class="container" id="foodButtons">
+                        </div> -->
 
+                        <!-- Dropdown menu with filter checkboxes-->
+                        <div class="foodFeatures" id="filter">
+                            <h2>Food Features</h2>
+                            <button class="dropdown-btn">Proteins
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <label>
+                                    <input class="features" type="checkbox" name="protein" value="beef">
+                                    <span class="checkmark">Beef</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="protein" value="pork">
+                                    <span class="checkmark">Pork</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="protein" value="lamb">
+                                    <span class="checkmark">Lamb</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="protein" value="chicken">
+                                    <span class="checkmark">Chicken</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="protein" value="fish">
+                                    <span class="checkmark">Fish</span>
+                                </label>
+                            </div>
+                            <button class="dropdown-btn">Textures
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="creamy">
+                                    <span class="checkmark">Creamy</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="crunchy">
+                                    <span class="checkmark">Crunchy</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="crumbly">
+                                    <span class="checkmark">Crumbly</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="gooey">
+                                    <span class="checkmark">Gooey</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="moist">
+                                    <span class="checkmark">Moist</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="textures" value="tender">
+                                    <span class="checkmark">Tender</span>
+                                </label>
+                                <br>
+                            </div>
+                            <button class="dropdown-btn">Flavors
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <label>
+                                    <input class="features" type="checkbox" name="flavors" value="bitter">
+                                    <span class="checkmark">Bitter</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="flavors" value="salty">
+                                    <span class="checkmark">Salty</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="flavors" value="sour">
+                                    <span class="checkmark">Sour</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="flavors" value="spicy">
+                                    <span class="checkmark">Spicy</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="flavors" value="sweet">
+                                    <span class="checkmark">Sweet</span>
+                                </label>
+                            </div>
+                            <button class="dropdown-btn">Cooking Methods
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <label>
+                                    <input class="features" type="checkbox" name="method" value="baked">
+                                    <span class="checkmark">Baked</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="method" value="boiled">
+                                    <span class="checkmark">Boiled</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="method" value="deepfried">
+                                    <span class="checkmark">Deep-Fried</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="method" value="grilled">
+                                    <span class="checkmark">Grilled</span>
+                                </label>
+                                <br>
+                                <label>
+                                    <input class="features" type="checkbox" name="method" value="roasted">
+                                    <span class="checkmark">Roasted</span>
+                                </label>
+                            </div>
+                        </div>
                         <!-- Restuarant's List -->
                         <div id="listing">
                             <table id="resultsTable">
                                 <tbody id="results"></tbody>
                             </table>
-                            <button id="moreResults">More results</button>
                         </div>
 
                         <!-- Marker Information Window -->
@@ -109,7 +233,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4 productInfo">
-                        <h2>Product Information</h2>
+                        <h3>Product Information</h3>
                         <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                             ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -117,7 +241,7 @@
                             sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                     <div class="col-lg-4 productInfo">
-                        <h2>Product Information</h2>
+                        <h3>Product Information</h3>
                         <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                             ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -125,7 +249,7 @@
                             sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                     <div class="col-lg-4 productInfo">
-                        <h2>Product Information</h2>
+                        <h3>Product Information</h3>
                         <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                             ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -134,10 +258,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="row">
                         <div class="col-lg-3 teamInfo">
                             <img class="center-block teammate-pic" src="assets/images/404.png">
-                            <h2>Dorian Macias</h2>
+                            <h3>Dorian Macias</h3>
                             <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -158,7 +281,7 @@
                         </div>
                         <div class="col-lg-3 teamInfo">
                             <img class="center-block teammate-pic" src="assets/images/404.png">
-                            <h2>Edward Nguyen</h2>
+                            <h3>Edward Nguyen</h3>
                             <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -179,7 +302,7 @@
                         </div>
                         <div class="col-lg-3 teamInfo">
                             <img class="center-block teammate-pic" src="assets/images/404.png">
-                            <h2>Ronaldo DeGuzman</h2>
+                            <h3>Ronaldo DeGuzman</h3>
                             <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -200,7 +323,7 @@
                         </div>
                         <div class="col-lg-3 teamInfo">
                             <img class="center-block teammate-pic" src="assets/images/404.png">
-                            <h2>Shawn Wood</h2>
+                            <h3>Shawn Wood</h3>
                             <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -219,22 +342,22 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
 
         </div>
-    </div>
 
 
     <!-- Linking page to .js file -->
     <script type="text/javascript" src="assets/javascript/maps.js"></script>
-    <script src="assets/javascript/javascript.js"></script>
+    <script type="text/javascript" src="assets/javascript/javascript.js"></script>
     <!-- Linking page to Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADQWA9pS3wGpWVW7yxepN2ms5uk4h80Uk&libraries=places&callback=initMap"
         async defer></script>
     <script>
         setupUserGreeting();
+        initializeDropMenu();
+        checkBoxUpdater();
     </script>
 </body>
 

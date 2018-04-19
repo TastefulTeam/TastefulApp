@@ -1,11 +1,8 @@
 // Global Variables
 var map, places, infoWindow;
 var markers = [];
-// Variable for search bar autocomplete
 var autocomplete;
-// Array of Taste filters
 var food = ["Salty", "Sweet", "Sour", "Fruity", "Vegan", "Crunchy", "Crispy"];
-// Empty array to push taste into keywords
 var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
@@ -157,7 +154,7 @@ function search() {
     radius: 4000,
     keyword: chosenFood[chosenFood.length - 1]
   }
-  console.log(search.keyword);
+ /* console.log(search.keyword); */
 
   // Google places library searches nearby restaurants in the your chosen area
   places.nearbySearch(search, function (results, status, pagination) {
@@ -181,7 +178,7 @@ function search() {
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
-      }
+        
 
       // Google Places API Code to get more results past the initial 20 results up to 60 results can be found
       var getNextPage = null;
@@ -268,7 +265,6 @@ function clearResults() {
 ***************************************************/
 
 function createButtons() {
-  console.log("inside function");
   for (var i = 0; i < food.length; i++) {
     var a = $("<button>");
     a.addClass("food");
