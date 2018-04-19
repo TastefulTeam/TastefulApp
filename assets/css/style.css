@@ -95,7 +95,8 @@ body {
 
 /* Start of Signup/Survey Page CSS */
 
-.newAccountSheet, .surveySheet {
+.newAccountSheet,
+.surveySheet {
     color: #FFFFFF;
     background-color: #3c4858;
     height: 31em;
@@ -104,8 +105,7 @@ body {
     box-shadow: 0px 40px 50px #000000;
 }
 
-.form-control
-{
+.form-control {
     color: #fff;
 }
 
@@ -117,7 +117,9 @@ body {
     border-radius: 2%;
     box-shadow: 0px 40px 50px #000000;
 }
-#createAccountHeader, #surveyHeader,
+
+#createAccountHeader,
+#surveyHeader,
 #sidebarHeader {
     font-family: 'Moon_Flower';
     font-size: 2.2em;
@@ -126,14 +128,18 @@ body {
     text-align: left;
 }
 
-#submit-account-button, #submit-survey-button {
+#submit-account-button,
+#submit-survey-button {
     font-family: 'Moon_Flower';
     border-color: #FFFFFF;
     background-color: #3c4858;
     font-size: 2em;
 }
 
-#submit-account-button:hover, #submit-account-button:active,#submit-survey-button:hover, #submit-survey-button:active {
+#submit-account-button:hover,
+#submit-account-button:active,
+#submit-survey-button:hover,
+#submit-survey-button:active {
     font-family: 'Moon_Flower';
     color: #fff;
     background-color: #303946;
@@ -178,18 +184,7 @@ body {
     color: #FFFFFF;
     text-align: left;
 }
-
-
-/* CSS for user UserGreeting on top right side of mainpage */
-
-#userInfo {
-    font-family: 'Moon_Flower';
-    font-size: 1.5em;
-    margin-top: 8%;
-    color: #FFFFFF;
-    text-align: right;
-}
-
+/*================================================================*/
 /* Shadow for MainContainer Div */
 
 .mainContent {
@@ -302,6 +297,12 @@ h3 {
     font-weight: bolder;
 }
 
+.teammate-pic
+{
+    border-radius: 125px;
+    margin-bottom: 10px;
+}
+
 .glyphicon {
     width: 25%;
 }
@@ -310,19 +311,10 @@ h3 {
     color: #999;
 }
 
-.test {
-    height: 75%;
-    width: 95%;
+#glyphicon:hover
+{
+    text-decoration: none;
 }
-
-.test2 {
-    height: 100%;
-}
-
-.test3 {
-    height: 100%;
-}
-
 /* Fixed sidenav, full height */
 
 .foodFeatures {
@@ -394,3 +386,43 @@ h3 {
 
 /* ----------------------- */
 
+
+.userDropbtn {
+    font-family: 'Moon_Flower';
+    font-size: 2em;
+    margin-top: 8%;
+    color: #FFFFFF;
+    text-align: right;
+    background-color: rgba(0,0,0,0.0);
+    border-style: none;
+    
+}
+
+
+
+.userDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);     
+    min-width: 99px;
+    box-shadow: 0px 20px 50px #000000;
+    z-index: 1;
+    font-family: 'Roboto Slab', serif;    
+    font-size: 1em;
+    color: #fff;
+    padding: 10px;
+}
+
+.userDropdown-content a:hover {background-color: #ddd}
+
+.userDropdown:hover .userDropdown-content {
+    display: block;
+}
+
+.userDropdown:hover .userDropbtn {
+
+background-color: rgba(0,0,0,0.3); 
+    
+}
+
+/* CSS for user UserGreeting on top right side of mainpage */

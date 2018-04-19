@@ -97,21 +97,12 @@ function submitCheckBoxes() {
       if (checkBox.checked === true) { // If checkbox is checked when submit button is pressed...
         user.foodFeatures.push(checkBox.getAttribute('value')); // Pushes checked values into foodFeatures array
         window.location.href = 'main-page.html'; // Jumps to main page
-      }else{
+      } else {
         // Need to add alert when no options are selected
       }
     }
     localStorage.setItem('localUser', JSON.stringify(user)); // Takes user object and makes it into a string
   });
-};
-
-
-/* Main Page Functions */
-/* Pulls info from the User Object and makes greeting on top right hand side */
-function setupUserGreeting() {
-  var user = JSON.parse(localStorage.getItem('localUser')); // Call user object
-
-  $("#userInfo").text("Hello " + user.userName); // User Greeting
 };
 
 /* Main Page Functions */
@@ -132,6 +123,24 @@ function initializeDropMenu() {
     });
   }
 };
+
+/* Main Page Functions */
+/* Pulls info from the User Object and makes greeting on top right hand side */
+function setupUserGreeting() {
+
+  var user = JSON.parse(localStorage.getItem('localUser')); // Call user object
+  if (user === null) {
+    $(".userDropbtn").text("Hello Friend"); // User Greeting
+    $("#logout").text("Back to Home Page")
+    initializeDropMenu();
+  }else{
+    $(".userDropbtn").text("Hello " + user.userName); // User Greeting
+    $("#logout").text("Logout")    
+    initializeDropMenu();
+  }
+
+};
+
 /* Main Page Functions */
 /* Function that checks if features was previously checked on survey page */
 /* Function also interacts with the search */
@@ -142,17 +151,24 @@ function checkBoxUpdater() {
 
   for (i = 0; i < checkBoxes.length; i++) { // Standard for loop
     var checkBox = checkBoxes[i].getAttribute('value'); // Assigns a varible to value of checkboxes[i]
-    
+
     for (y = 0; y < featuresArray.length; y++) { // Runs for loop for checked food features array within Checkboxes for loop
       if (checkBox === featuresArray[y]) {
-        $(checkBoxes[i]).prop('checked',true); // If value a value in a checkbox === a value in the array, marks said checkbox as checked
+        $(checkBoxes[i]).prop('checked', true); // If value a value in a checkbox === a value in the array, marks said checkbox as checked
       }
     }
   }
   console.log(featuresArray);
 }
 
+function logOut() {
 
+  $('#logout').on('click', function (event) {
+    localStorage.clear();
+    window.location.href = 'index.html'; // Jumps to Index
+  });
+
+}
 
 
 
