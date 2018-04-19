@@ -422,4 +422,22 @@ function initializeDropMenu() {
   }
 };
 
+function checkBoxUpdater() {
+  var user = JSON.parse(localStorage.getItem('localUser')); // Calls user object
+  var featuresArray = user.foodFeatures;
+  var checkBoxes = document.getElementsByClassName("features");
+
+  for (i = 0; i < checkBoxes.length; i++) { // Standard for loop
+    var checkBox = checkBoxes[i].getAttribute('value'); // Assigns a varible to value of checkboxes[i]
+    
+    for (y = 0; y < featuresArray.length; y++) { // Runs for loop for checked food features array within Checkboxes for loop
+      if (checkBox === featuresArray[y]) {
+        $(checkBoxes[i]).prop('checked',true); // If value a value in a checkbox === a value in the array, marks said checkbox as checked
+      }
+    }
+  }
+  console.log(featuresArray);
+}
+
+checkBoxUpdater();
 initializeDropMenu();
