@@ -3,12 +3,27 @@
 <head>
     <title>Tasteful</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Linking page to CSS -->
+    <!-- BootStrap 3 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
+    <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Reset and Style CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome Fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <!-- Linking Page to Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <!-- Linking Page to JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 </head>
+
 
 <body idstyle='overflow-x:hidden; overflow-y:hidden;'>
     <div class="background">
@@ -58,48 +73,30 @@
             <div class="col-lg-4 filler"></div>
             <div class="col-lg-4 description">
                 <h1 id="descriptionHeaders">Let's Talk Product</h1>
-                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
+                <p class="text" id="description">Tasteful is a food search app that provides the user with a personal and custom search for food. Tasteful
+                    matches descriptive keywords of the desired food and the user’s personal food preferences creating a
+                    refined and precise search experience. Instead of choosing between food suggestions based on the opinions
+                    and preferences of others, Tasteful connects the user with options that appeal to their food preferences,
+                    desires, and cravings.
             </div>
             <div class="col-lg-4 filler"></div>
         </div>
+
         <div class="row">
-            <div class="col-lg-4 productInfo">
-                <h3>Product Information</h3>
-                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
+            <div class="col-lg-4 filler"></div>
+            <div class="col-lg-4 description">
+                <h1 id="descriptionHeaders">Here's Our Team</h1>
             </div>
-            <div class="col-lg-4 productInfo">
-                <h3>Product Information</h3>
-                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
-            </div>
-            <div class="col-lg-4 productInfo">
-                <h3>Product Information</h3>
-                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
-            </div>
+            <div class="col-lg-4 filler"></div>
         </div>
         <div class="row">
             <div class="col-lg-3 teamInfo">
                 <img class="center-block teammate-pic" src="assets/images/dorian.jpg">
                 <h3>Dorian Macias</h3>
-                <p class="text" id="description">Up and coming Full-Stack Developer, I was given the challenge of creating the user friendly and appealing
-                    UI that you see throughout the page aswell as assisting my fellow Developers with tying in the front
-                    end with the back end. I loved working on the front end of the code where I was given free reign on how
-                    the appearance our page and the interactive parts of the page. </p>
+                <p class="text" id="description">Growing up I've always had a passion for seeing how things work and a crazy desire to build and create. Channeling
+                    that into Full stack web development was an easy transition considering how into computers I am. I'll
+                    be a strong a to any team that I'm put into with the skillset I've developed in the past and will continue
+                    to develop well into the future of my career.</p>
                 <br>
                 <div class=" center-block glyphicon">
                     <a id="glyphicon" href="https://github.com/dorianinc">
@@ -139,11 +136,10 @@
             <div class="col-lg-3 teamInfo">
                 <img class="center-block teammate-pic" src="assets/images/ronaldo.jpg">
                 <h3>Ronaldo DeGuzman</h3>
-                <p class="text" id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
+                <p class="text" id="description">Ronaldo DeGuzman [5:44 PM] My name is Ronaldo DeGuzman. I graduated from the University of San Francisco
+                    (B.S. Kinesiology). I want to intersect my background and experience in the health and medical field
+                    with computer programming and software development. On this project, I was a part of the backend team
+                    with Ed.</p>
                 <br>
                 <div class="center-block glyphicon">
                     <a id="glyphicon" href="https://github.com/rbdjur">
