@@ -239,18 +239,7 @@ body {
     overflow: scroll;
 }
 
-#filter
-{
-    display: block;
-}
-#listing
-{
-    display: none;
-}
-#listing, #resultsTable
-{
-    margin-top: 20px;
-}
+
 
 .food {
     background-color: indianred;

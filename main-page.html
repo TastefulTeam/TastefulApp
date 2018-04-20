@@ -60,7 +60,6 @@
 
                     <!-- Dropdown menu with filter checkboxes-->
                     <div class="foodFeatures" id="filter">
-                            <i class="fas fa-align-justify" id="switch"></i>
                         <h2>Food Features</h2>
                         <button class="dropdown-btn">Proteins
                             <i class="fa fa-caret-down"></i>
@@ -184,14 +183,19 @@
                                 <span class="checkmark">Roasted</span>
                             </label>
                         </div>
+                        <button class="dropdown-btn">Restaurants
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container">
+                            <div id="listing">
+                                <table id="resultsTable">
+                                    <tbody id="results"></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Restuarant's List -->
-                    <div id="listing">
-                            <h2>Restuarants</h2>                        
-                        <table id="resultsTable">
-                            <tbody id="results"></tbody>
-                        </table>
-                    </div>
+
+
 
                     <!-- Marker Information Window -->
                     <div style="display: none">

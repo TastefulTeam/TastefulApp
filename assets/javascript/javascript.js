@@ -170,7 +170,6 @@ function logOut() {
 
 }
 
-function switch()
 
 
 /*
