@@ -129,13 +129,20 @@ body {
 }
 
 #submit-account-button,
-#submit-survey-button {
+#submit-survey-button,{
     font-family: 'Moon_Flower';
     border-color: #FFFFFF;
     background-color: #3c4858;
     font-size: 2em;
 }
-
+#moreResults
+{
+    font-family: 'Moon_Flower';
+    border-color: #FFFFFF;
+    background-color: #3c4858;
+    margin-top: 10px;
+    font-size: 1em;
+}
 #submit-account-button:hover,
 #submit-account-button:active,
 #submit-survey-button:hover,
