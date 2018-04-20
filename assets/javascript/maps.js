@@ -1,11 +1,8 @@
 // Global Variables
 var map, places, infoWindow;
 var markers = [];
-// Variable for search bar autocomplete
 var autocomplete;
-// Array of Taste filters
 var food = ["Salty", "Sweet", "Sour", "Fruity", "Vegan", "Crunchy", "Crispy"];
-// Empty array to push taste into keywords
 var chosenFood = [];
 // Currently restrict searchs in autocomplete to USA only
 var countryRestrict = { 'country': 'us' };
@@ -14,64 +11,11 @@ var MARKER_PATH = 'assets/images/markers/marker_red';
 // use RegExp to shorten URLs to simple ones
 var urlnameRegexp = new RegExp('^https?://.+?/');
 
-var user = JSON.parse(localStorage.getItem('localUser')); // Calls user object
-var allCheckBoxes = document.getElementsByClassName("features"); // Assigns variable to feautures checkboxes 
-user.foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
-
 /**************************************************
-*      Start of Generate Google Map UI Code       *
+ *        Start of Map and Marker Code            *
 ***************************************************/
-
-// This function is what generates the map when page is loaded with it starting in the USA
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: { lat: 37.1, lng: -95.7 },
-    panControl: false,
-    zoomControl: false,
-    streetViewControl: false
-  });
-
-  // Place autocomplete search box inside UI of map
-  var input = document.getElementById('autocomplete');
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  infoWindow = new google.maps.InfoWindow({
-    content: document.getElementById('info-content')
-
-  });
-
-  // Create the autocomplete object based on what the user inputs
-  // Restrict the search to the default USA, and restrict user input to place type "cities".
-  autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(
-      document.getElementById('autocomplete')), {
-      types: ['(cities)'],
-      componentRestrictions: countryRestrict
-    });
-
-  places = new google.maps.places.PlacesService(map);
-
-  autocomplete.addListener('place_changed', onPlaceChanged);
-
-  	var myMarker = new google.maps.Marker({
-		map: map,
-    animation: google.maps.Animation.DROP
-	});
-  yourLocationButton(map, myMarker);
-}
-
-/**************************************************
-*       End of Generate Google Map UI Code        *
-***************************************************/
-
-/**************************************************
-*         Start of Current Location Code          *
-***************************************************/
-
 function yourLocationButton(map, marker)
 {
-  // Create Your Location Button
   var controlDiv = document.createElement('div');
 	var controlBorder = document.createElement('button');
   controlBorder.style.backgroundColor = '#fff';
@@ -108,9 +52,7 @@ function yourLocationButton(map, marker)
 			if(imgLoc == '-18') imgLoc = '0';
 			else imgLoc = '-18';
 			$('#your_location_img').css('background-position', imgLoc +'px 0px');
-    }, 500);
-    
-    // Google Maps API code for geolocation which grabs users device current location
+		}, 500);
 		if(navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -128,19 +70,47 @@ function yourLocationButton(map, marker)
 		}
   });
   
-  // Position the current locations button at the bottom right corner or MAP UI
   controlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
   
 }
 
-/**************************************************
-*          End of Current Location Code           *
-***************************************************/
+// This function is what generates the map when page is loaded with it starting in the USA
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: { lat: 37.1, lng: -95.7 },
+    panControl: false,
+    zoomControl: false,
+    streetViewControl: false
+  });
 
-/**************************************************
-*      Start Of Search by City Nearby Code        *
-***************************************************/
+  var input = document.getElementById('autocomplete');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  infoWindow = new google.maps.InfoWindow({
+    content: document.getElementById('info-content')
+
+  });
+
+  // Create the autocomplete object based on what the user inputs
+  // Restrict the search to the default USA, and restrict user input to place type "cities".
+  autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(
+      document.getElementById('autocomplete')), {
+      types: ['(cities)'],
+      componentRestrictions: countryRestrict
+    });
+  places = new google.maps.places.PlacesService(map);
+
+  autocomplete.addListener('place_changed', onPlaceChanged);
+  	var myMarker = new google.maps.Marker({
+		map: map,
+    animation: google.maps.Animation.DROP
+	});
+  yourLocationButton(map, myMarker);
+}
 
 // Zoom in on User city input
 function onPlaceChanged() {
@@ -159,14 +129,11 @@ function search() {
   var search = {
     bounds: map.getBounds(),
     types: ['restaurant'],
-    radius: 4000,
-    // keyword: user.foodFeatures
     keyword: chosenFood[chosenFood.length-1]
   }
-  console.log(search.keyword);
+ /* console.log(search.keyword); */
 
-  // Google places library searches nearby restaurants in the your chosen area
-  places.nearbySearch(search, function (results, status, pagination) {
+  places.nearbySearch(search, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers();
@@ -187,30 +154,12 @@ function search() {
         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
         addResult(results[i], i);
-      }
+        
 
-      // Google Places API Code to get more results past the initial 20 results up to 60 results can be found
-      var getNextPage = null;
-      var moreButton = document.getElementById('moreResults');
-      moreButton.onclick = function() {
-        moreButton.disabled = true;
-        if (getNextPage) getNextPage();
-      };
-      moreButton.disabled = !pagination.hasNextPage;
-      getNextPage = pagination.hasNextPage && function() {
-        pagination.nextPage();
-      };
+      }
     }
   });
 }
-
-/**************************************************
-*        End Of Search by City Nearby Code        *
-***************************************************/
-
-/**************************************************
- *          Start of Map Markers Code             *
-***************************************************/
 
 // Function to clear markers when needed
 function clearMarkers() {
@@ -266,7 +215,7 @@ function clearResults() {
 }
 
 /**************************************************
- *           End of Map Markers Code              *
+ *         End of Map and Marker Code             *
 ***************************************************/
 
 /**************************************************
@@ -274,7 +223,6 @@ function clearResults() {
 ***************************************************/
 
 function createButtons() {
-  console.log("inside function");
   for (var i = 0; i < food.length; i++) {
     var a = $("<button>");
     a.addClass("food");
@@ -306,24 +254,6 @@ function createButtons() {
   });
 };
 console.log("Chosen food is: " + chosenFood);
-
-$(".features").on("click", function (event) {
-  user.foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
-
-  for (var i = 0; i < allCheckBoxes.length; i++) { // Loops thru array variable 
-    var checkBox = allCheckBoxes[i]; // Assigns variable to all individual checkboxes
-
-    if (checkBox.checked === true) { // If checkbox is checked when submit button is pressed...
-      user.foodFeatures.push(checkBox.getAttribute('value')); // Pushes checked values into foodFeatures array
-      search();
-      console.log(user.foodFeatures);
-    }else{
-      search();
-      // Need to add alert when no options are selected
-    }
-  }
-  localStorage.setItem('localUser', JSON.stringify(user)); // Takes user object and makes it into a string
-});
 
 /**************************************************
  *             End of Filters Code                *
@@ -403,9 +333,5 @@ function buildIWContent(place) {
 ***************************************************/
 
 
-// // Call function createButtons
-// createButtons();
-
-/**** ***************************** */
-
-
+// Call function createButtons
+createButtons();

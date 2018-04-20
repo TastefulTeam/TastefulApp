@@ -42,9 +42,9 @@ body {
 
 .slideShow {
     width: 1536px;
-    height: 800px;
+    height: 740px;
     position: absolute;
-    z-index: 0;
+    z-index: -1;
 }
 
 /* Background slideshow for opening page CSS */
@@ -239,6 +239,19 @@ body {
     overflow: scroll;
 }
 
+#filter
+{
+    display: block;
+}
+#listing
+{
+    display: none;
+}
+#listing, #resultsTable
+{
+    margin-top: 20px;
+}
+
 .food {
     background-color: indianred;
     border-style: solid;
@@ -256,7 +269,7 @@ h2 {
 /* End of sidebar content CSS */
 
 .secondaryContent {
-    margin-top: 55px;
+    margin-top: 210px;
     height: 130%;
     width: 97%;
     color: #3c4858;
