@@ -16,7 +16,7 @@ var urlnameRegexp = new RegExp('^https?://.+?/');
 
 var user = JSON.parse(localStorage.getItem('localUser')); // Calls user object
 var allCheckBoxes = document.getElementsByClassName("features"); // Assigns variable to feautures checkboxes 
-user.foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
+var foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
 
 /**************************************************
 *      Start of Generate Google Map UI Code       *
@@ -160,7 +160,7 @@ function search() {
     bounds: map.getBounds(),
     types: ['restaurant'],
     radius: 4000,
-    keyword: user.foodFeatures
+    keyword: foodFeatures
     // keyword: chosenFood[chosenFood.length-1]
   }
   console.log(search.keyword);
@@ -308,15 +308,15 @@ function createButtons() {
 console.log("Chosen food is: " + chosenFood);
 
 $(".features").on("click", function (event) {
-  user.foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
+  var foodFeatures = []; // Calls array from within user object and clears any unwanted checkbox values 
 
   for (var i = 0; i < allCheckBoxes.length; i++) { // Loops thru array variable 
     var checkBox = allCheckBoxes[i]; // Assigns variable to all individual checkboxes
 
     if (checkBox.checked === true) { // If checkbox is checked when submit button is pressed...
-      user.foodFeatures.push(checkBox.getAttribute('value')); // Pushes checked values into foodFeatures array
+      foodFeatures.push(checkBox.getAttribute('value')); // Pushes checked values into foodFeatures array
       search();
-      console.log(user.foodFeatures);
+      console.log(foodFeatures);
     }else{
       search();
       // Need to add alert when no options are selected
